@@ -8,7 +8,10 @@ module.exports = {
         secondary: "#00BDD3",
         background: "#F8F8F8",
         hover: "#FFE302",
-        disable: "#B4B4B4"
+        disable: "#B4B4B4",
+        bordercolor: "#D0CFCF",
+        inputvalue: "#7E7E7E",
+        error: "#CB3D40"
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
