@@ -16,6 +16,8 @@ const helperTypes = {
 };
 
 function Input({ type, value, variant, setValue }) {
+  const [inputValue, setInputValue] = useState("");
+
   return (
     <div className='relative'>
       {inputValue ? <label className={labelTypes[`${variant}`]}>Email</label> : null}
