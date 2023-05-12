@@ -1,24 +1,25 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { getData } from "./helpers/fetchs";
 import Button from "./ui/Button";
 import Card from "./ui/Card";
 
 function Users() {
   const [users, setUsers] = useState([]);
-  console.log("users", users);
+  const [page, setPage] = useState(1);
+  console.log("page", page);
+
+  const showMore = async (page) => {
+    setPage((prev) => prev + 1);
+    const data = await getData(page, 6);
+    const newUsers = [...users];
+    newUsers.push(...data);
+    setUsers(newUsers);
+  };
+
   useEffect(() => {
-    fetch("https://frontend-test-assignment-api.abz.agency/api/v1/users?page=1&count=6")
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        console.log(data);
-        if (data.success) {
-          setUsers(data.users);
-        } else {
-          // proccess server errors
-        }
-      });
+    const data = async () => setUsers(await getData(page, 6));
+    data();
   }, []);
 
   return (
@@ -41,7 +42,8 @@ function Users() {
       <Button
         spacing='mt-12 self-center'
         type='button'
-        variant='more'>
+        variant='more'
+        onClick={() => showMore(page)}>
         Show more
       </Button>
     </div>
