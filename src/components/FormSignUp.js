@@ -1,15 +1,25 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "./ui/Button";
 import { useForm } from "react-hook-form";
-import Radiobutton from "./ui/Radiobutton";
 import Input from "./ui/Input";
 import RadioSection from "./RadioSection";
 import TextArea from "./ui/TextArea";
+import { getPositions } from "./helpers/fetchs";
 
 const FormSignUp = () => {
   const [isChecked, setIsChecked] = useState(false);
+  const [positions, setPositions] = useState([]);
+
+  useEffect(() => {
+    const position = async () => {
+      const positions = await getPositions();
+      setPositions(positions);
+    };
+    position();
+  }, []);
+
   return (
     <div>
       <h1 className='font-sans text-center text-4xl mt-40 mb-12'>Working with GET request</h1>
@@ -34,6 +44,7 @@ const FormSignUp = () => {
           kind='Phone'
         />
         <RadioSection
+          positions={positions}
           setIsChecked={setIsChecked}
           isChecked={isChecked}
         />

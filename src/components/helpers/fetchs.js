@@ -4,12 +4,25 @@ export const getData = async (page, count) => {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       if (data.success) {
-        return data.users;
+        return data;
       } else {
         // proccess server errors
       }
     });
   return users;
+};
+export const getPositions = async () => {
+  const positions = await fetch("https://frontend-test-assignment-api.abz.agency/api/v1/positions")
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      if (data.success) {
+        return data.positions;
+      } else {
+        // proccess server errors
+      }
+    });
+  return positions;
 };

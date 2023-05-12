@@ -7,6 +7,7 @@ import Preloader from "./ui/Preloader";
 
 function Users() {
   const [users, setUsers] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
   const [page, setPage] = useState(1);
   const [isUpdate, setIsUpdate] = useState(true);
 
@@ -14,14 +15,23 @@ function Users() {
     setIsUpdate(true);
     setPage((prev) => prev + 1);
     const data = await getData(page, 6);
+    const usersData = data.users;
     const newUsers = [...users];
-    newUsers.push(...data);
+    newUsers.push(...usersData);
+    newUsers.sort((prev, cur) => cur.registration_timestamp - prev.registration_timestamp);
     setUsers(newUsers);
     setIsUpdate(false);
   };
 
   useEffect(() => {
-    const data = async () => setUsers(await getData(page, 6));
+    const data = async () => {
+      const usersData = await getData(page, 6);
+      setTotalPages(usersData.total_pages);
+      const users = usersData.users;
+      users.sort((prev, cur) => cur.registration_timestamp - prev.registration_timestamp);
+      setUsers(users);
+    };
+
     data();
     setPage((prev) => prev + 1);
     setIsUpdate(false);
@@ -48,14 +58,15 @@ function Users() {
           })}
         </div>
       )}
-
-      <Button
-        spacing='mt-12 self-center'
-        type='button'
-        variant='more'
-        onClick={() => showMore(page)}>
-        Show more
-      </Button>
+      {page > totalPages ? null : (
+        <Button
+          spacing='mt-12 self-center'
+          type='button'
+          variant='more'
+          onClick={() => showMore(page)}>
+          Show more
+        </Button>
+      )}
     </div>
   );
 }

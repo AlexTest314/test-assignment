@@ -25,7 +25,7 @@ const Radiobutton = ({ children, isChecked, setIsChecked }) => {
       )}
 
       <label
-        for='draft'
+        htmlFor='draft'
         className='ml-3 text-body'>
         {children}
       </label>
