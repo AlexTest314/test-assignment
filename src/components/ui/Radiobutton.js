@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React, { useState } from "react";
 import RadioSel from "../../img/radio-selected.svg";
 import Radio from "../../img/radio.svg";
@@ -15,15 +16,20 @@ const Radiobutton = ({ children, isChecked, setIsChecked }) => {
         onClick={() => setIsChecked(true)}
       />
       {isChecked ? (
-        <img
+        <Image
+          width={20}
+          height={20}
           className=' absolute bg-white rounded-full h-5 w-5 hover:to-black -z-10'
           src={RadioSel.src}
-          alt='radio'></img>
+          alt='radio'
+        />
       ) : (
-        <img
+        <Image
+          width={20}
+          height={20}
           className='absolute bg-white rounded-full h-5 w-5 hover:to-black -z-10'
           src={Radio.src}
-          alt='radio'></img>
+          alt='radio'></Image>
       )}
 
       <label

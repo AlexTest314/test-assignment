@@ -7,9 +7,10 @@ function Header() {
   return (
     <div className='w-screen bg-white flex h-16 justify-center'>
       <div className='xl:w-1170 lg:w-1024 lg:px-60 md:w-768 md:px-8 sm:w-360 sm:px-4 flex justify-between'>
-        <img
+        <Image
           src={Logo.src}
-          className='w-28'
+          width={104}
+          height={26}
           alt='logo image'
         />
 

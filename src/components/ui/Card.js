@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import NoImage from "../../img/no-image.svg";
 
@@ -9,7 +10,9 @@ function Card({ photo, name, position, email, phone }) {
   return (
     <div className=' bg-white rounded-xl basis-1/3  sm:mx-4'>
       <div className='m-5 flex justify-center'>
-        <img
+        <Image
+          width={70}
+          height={70}
           src={photo}
           className='w-70 h-70 rounded-full'
           alt='User photo'
