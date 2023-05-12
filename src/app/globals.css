@@ -5,13 +5,7 @@
 
 :root {
   background: rgb(248, 248, 248);
-  font-family: 'Nunito';
+  font-family: 'Nunito' 'sans';
   font-size: 1rem;
-  line-height: 1.75rem;
-}
-
-
-
-body {
-  
+  line-height: 1.625rem;
 }

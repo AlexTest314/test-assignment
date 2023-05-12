@@ -1,20 +1,17 @@
 import React from "react";
 
-function Card() {
-  const way = "Leading specialist of the department of cent...";
-  const email = "frontend_develop@gmail.com";
-  const phone = "+38 (098) 278 44 24";
-
+function Card({ photo, name, position, email, phone }) {
   return (
-    <div className='max-w-96 bg-white rounded-xl'>
+    <div className=' bg-white rounded-xl basis-1/3  sm:mx-4'>
       <div className='m-5 flex justify-center'>
         <img
-          className='w-16 h-16 rounded-full'
+          src={photo}
+          className='w-70 h-70 rounded-full'
           alt='User photo'></img>
       </div>
-      <div className='m-5 text-center'>Takamaru Ayako Jurrien</div>
-      <div className='m-5 text-center'>
-        <div> {way}</div>
+      <div className='m-5 text-body text-center'>{name}</div>
+      <div className='m-5 text-body text-center'>
+        <div> {position}</div>
         <div>{email}</div>
         <div>{phone}</div>
       </div>

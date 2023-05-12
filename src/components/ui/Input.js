@@ -15,20 +15,20 @@ const helperTypes = {
   error: "text-xs ml-4 mt-1 text-error"
 };
 
-function Input({ type, value, variant, setValue }) {
+function Input({ type, value, variant, setValue, kind, spacing }) {
   const [inputValue, setInputValue] = useState("");
 
   return (
     <div className='relative'>
-      {inputValue ? <label className={labelTypes[`${variant}`]}>Email</label> : null}
+      {inputValue ? <label className={labelTypes[`${variant}`]}>{kind}</label> : null}
       <input
         type={type}
         id={type}
-        className={inputTypes[`${variant}`]}
-        placeholder={inputValue ? "" : "Email"}
+        className={`${inputTypes[`${variant}`]} ${spacing}`}
+        placeholder={inputValue ? "" : `${kind}`}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <p className={helperTypes[`${variant}`]}>helper text</p>
+      <p className={helperTypes[`${variant}`]}>{kind === "Phone" ? "+38 (XXX) XXX - XX - XX" : null}</p>
     </div>
   );
 }
