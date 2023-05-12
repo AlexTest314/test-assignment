@@ -9,11 +9,11 @@ function Card({ photo, name, position, email, phone }) {
           className='w-70 h-70 rounded-full'
           alt='User photo'></img>
       </div>
-      <div className='m-5 text-body text-center'>{name}</div>
-      <div className='m-5 text-body text-center'>
-        <div> {position}</div>
-        <div>{email}</div>
-        <div>{phone}</div>
+      <div className='m-5 text-body text-center truncate'>{name}</div>
+      <div className='m-5 text-body text-center '>
+        <div className='truncate'>{position}</div>
+        <div className='truncate'>{email}</div>
+        <div className='truncate'>{phone}</div>
       </div>
     </div>
   );
