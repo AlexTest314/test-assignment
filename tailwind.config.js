@@ -51,10 +51,10 @@ module.exports = {
         error: "#CB3D40"
       },
       backgroundImage: {
-        sm: "url('../img/bg-sm.png')",
-        md: "url('../img/bg-md.png')",
-        lg: "url('../img/bg-lg.png')",
-        xl: "url('../img/bg-xl.png')"
+        sm: "url('../img/bg-sm.webp')",
+        md: "url('../img/bg-md.webp')",
+        lg: "url('../img/bg-lg.webp')",
+        xl: "url('../img/bg-xl.webp')"
       },
       fontSize: {
         heading: ["2.5rem", "2.5rem"],
