@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import Logo from "../img/logo.svg";
 import Button from "./ui/Button";
