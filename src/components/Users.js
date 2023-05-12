@@ -25,7 +25,7 @@ function Users() {
 
   useEffect(() => {
     const data = async () => {
-      const usersData = await getData(page, 6);
+      const usersData = await getData(1, 6);
       setTotalPages(usersData.total_pages);
       const users = usersData.users;
       users.sort((prev, cur) => cur.registration_timestamp - prev.registration_timestamp);

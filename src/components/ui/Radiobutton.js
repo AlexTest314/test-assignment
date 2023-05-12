@@ -17,11 +17,13 @@ const Radiobutton = ({ children, isChecked, setIsChecked }) => {
       {isChecked ? (
         <img
           className=' absolute bg-white rounded-full h-5 w-5 hover:to-black -z-10'
-          src={RadioSel.src}></img>
+          src={RadioSel.src}
+          alt='radio'></img>
       ) : (
         <img
           className='absolute bg-white rounded-full h-5 w-5 hover:to-black -z-10'
-          src={Radio.src}></img>
+          src={Radio.src}
+          alt='radio'></img>
       )}
 
       <label
