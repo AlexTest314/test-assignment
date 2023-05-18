@@ -1,11 +1,11 @@
 "use client";
+import { getData } from "@/helpers/requests";
 import React, { useEffect, useState } from "react";
-import { getData } from "./helpers/fetchs";
 import Button from "./ui/Button";
 import Card from "./ui/Card";
 import Preloader from "./ui/Preloader";
 
-function Users() {
+function Users({ isRegistered }) {
   const [users, setUsers] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [page, setPage] = useState(1);
@@ -33,9 +33,13 @@ function Users() {
     };
 
     data();
+    if (isRegistered) {
+      setPage(1);
+      data();
+    }
     setPage((prev) => prev + 1);
     setIsUpdate(false);
-  }, []);
+  }, [isRegistered]);
 
   return (
     <div className='w-screen flex flex-col xl:w-1170  lg:px-60  md:px-8  sm:px-4'>

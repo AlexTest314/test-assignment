@@ -1,3 +1,4 @@
+"use client";
 import Description from "@/components/Description";
 import FormSignUp from "@/components/FormSignUp";
 import Form from "@/components/FormSignUp";
@@ -7,23 +8,19 @@ import Card from "@/components/ui/Card";
 import Input from "@/components/ui/Input";
 import Preloader from "@/components/ui/Preloader";
 import Radiobutton from "@/components/ui/Radiobutton";
-import TextArea from "@/components/ui/TextArea";
+import TextArea from "@/components/ui/InputFile";
 import Users from "@/components/Users";
+import { useState } from "react";
+import Registered from "@/components/Registered";
 
 export default function Home() {
+  const [isRegistered, setIsRegistered] = useState(false);
   return (
     <main className='flex min-h-screen flex-col items-center'>
-      {/* <Radiobutton /> */}
       <Header />
       <Description />
-
-      <Users />
-      {/* <Form /> */}
-      {/* <Button variant='default'>Sign Out</Button>
-      <Input variant='default' />
-      <TextArea />
-      <Card /> */}
-      <FormSignUp />
+      <Users isRegistered={isRegistered} />
+      {isRegistered ? <Registered /> : <FormSignUp setIsRegistered={setIsRegistered} />}
     </main>
   );
 }

@@ -15,6 +15,7 @@ module.exports = {
       spacing: {
         7: "0.4375rem",
         11: "0.6875rem",
+        18: "1.125rem",
         21: "1.3125rem",
         29: "1.8125rem",
         34: "2.125rem",
@@ -45,10 +46,7 @@ module.exports = {
         secondary: "#00BDD3",
         background: "#F8F8F8",
         hover: "#FFE302",
-        disable: "#B4B4B4",
-        bordercolor: "#D0CFCF",
-        inputvalue: "#7E7E7E",
-        error: "#CB3D40"
+        disable: "#B4B4B4"
       },
       backgroundImage: {
         sm: "url('../img/bg-sm.webp')",
@@ -59,6 +57,14 @@ module.exports = {
       fontSize: {
         heading: ["2.5rem", "2.5rem"],
         body: ["1rem", "1.625rem"]
+      },
+      borderColor: {
+        default: "#D0CFCF",
+        error: "#CB3D40"
+      },
+      textColor: {
+        default: "#7E7E7E",
+        error: "#CB3D40"
       },
       borderRadius: {
         4: "2rem"

@@ -1,39 +1,32 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import RadioSel from "../../img/radio-selected.svg";
 import Radio from "../../img/radio.svg";
 
-const Radiobutton = ({ children, isChecked, setIsChecked }) => {
+const Radiobutton = ({ name, checkInput, children, checkValue, index }) => {
   return (
     <div className='flex items-center relative mt-7'>
       <input
-        className='hover:ring-ping opacity-0 z-1 h-5 w-5'
-        id='draft'
+        {...checkInput}
+        className='opacity-0 z-1 h-5 w-5'
+        value={+index}
+        id={index}
         type='radio'
-        name='status'
-        onClick={() => setIsChecked(true)}
+        name={name}
       />
-      {isChecked ? (
-        <Image
-          width={20}
-          height={20}
-          className=' absolute bg-white rounded-full h-5 w-5 hover:to-black -z-10'
-          src={RadioSel.src}
-          alt='radio'
-        />
-      ) : (
-        <Image
-          width={20}
-          height={20}
-          className='absolute bg-white rounded-full h-5 w-5 hover:to-black -z-10'
-          src={Radio.src}
-          alt='radio'></Image>
-      )}
+
+      <Image
+        width={20}
+        height={20}
+        className=' absolute bg-white rounded-full h-5 w-5 hover:to-black -z-10'
+        src={checkValue == index ? RadioSel.src : Radio.src}
+        alt='radio'
+      />
 
       <label
-        htmlFor='draft'
+        htmlFor={index}
         className='ml-3 text-body'>
         {children}
       </label>

@@ -1,38 +1,47 @@
-"use client";
-import React, { useState } from "react";
+import { userFormValidation } from "@/helpers/form/validate";
+import React from "react";
 
 const inputTypes = {
-  default: "bg-transparent self-center text-black/[0.87] border-bordercolor border mt-8 h-54 w-380 sm:w-328 rounded-md pl-4 pr-4 pt-3 pb-3 focus:border focus:border-bordercolor focus:outline-none",
-  error: "bg-transparent text-black/[0.87] border-2 border-error h-54 w-380 sm:w-328 rounded-md pl-4 pr-4 pt-3 pb-3 focus:border-2 focus:border-error focus:outline-none"
+  style: "bg-transparent text-black/[0.87]  mt-8 h-54 w-380 sm:w-328 rounded-md pl-4 pr-4 pt-3 pb-3  focus:outline-none",
+  default: "border-default border focus:border focus:border-default",
+  error: "border-error border-2 focus:border-2 focus:border-error"
 };
 
 const labelTypes = {
-  default: "text-inputvalue text-xs absolute left-4 -top-2 bg-background h-4 max-w-20 pl-1 pr-1",
-  error: "text-xs text-error absolute left-4 -top-2 bg-background h-4 max-w-20 pl-1 pr-1"
-};
-const helperTypes = {
-  default: "text-xs pl-4 mr-0 mt-1 text-inputvalue h-3.5 w-380 sm:w-328",
-  error: "text-xs pl-4 mr-0 mt-1 text-error h-3.5 w-380 sm:w-328"
+  style: "text-default text-xs absolute left-4 top-6 bg-background h-4 max-w-20 pl-1 pr-1",
+  error: "text-error"
 };
 
-function Input({ type, value, variant, setValue, kind, spacing }) {
-  const [inputValue, setInputValue] = useState("");
+const helperTypes = {
+  style: "text-xs pl-4 mr-0 mt-1 h-3.5 w-380 sm:w-328",
+  default: "text-default",
+  error: "text-error "
+};
+
+function Input({ watch, error, name, register, type, kind }) {
+  const inputValue = watch(name);
 
   return (
     <div className='self-center sm:w-328'>
       <div className='relative'>
-        {inputValue ? <label className={labelTypes[`${variant}`]}>{kind}</label> : null}
+        {inputValue ? <label className={`${labelTypes.style} ${error ? labelTypes.error : labelTypes.default}`}>{kind}</label> : null}
         <input
+          {...register(type, userFormValidation[type])}
+          name={name}
           type={type}
           id={type}
-          className={`${inputTypes[`${variant}`]} ${spacing}`}
-          placeholder={inputValue ? "" : `${kind}`}
-          onChange={(e) => setInputValue(e.target.value)}
+          className={`${inputTypes.style} ${error ? inputTypes.error : inputTypes.default}`}
+          placeholder={kind}
         />
-        <p className={helperTypes[`${variant}`]}>{kind === "Phone" ? "+38 (XXX) XXX - XX - XX" : null}</p>
+        <p className={`${helperTypes.style}${error ? helperTypes.error : helperTypes.default}`}>
+          {error}
+          {type === "phone" && !error ? "+38 (XXX) XXX - XX - XX" : null}
+        </p>
       </div>
     </div>
   );
 }
 
 export default Input;
+
+//library classnames

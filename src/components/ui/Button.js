@@ -6,9 +6,10 @@ const buttonTypes = {
   disable: "h-34 w-100 body-font font-nunito text-center text-body text-white/[.87] rounded-full bg-disable opacity-"
 };
 
-const Button = ({ spacing, variant, type, onClick, children }) => {
+const Button = ({ disable, spacing, variant, type, onClick, children }) => {
   return (
     <button
+      disable
       className={`${buttonTypes[`${variant}`]} ${spacing}`}
       type={type}
       onClick={onClick}>
