@@ -8,27 +8,26 @@ import RadioSection from "./RadioSection";
 import InputFile from "./ui/InputFile";
 import { getPositions, getToken, postUserData } from "@/helpers/requests";
 import { userFormValidation } from "@/helpers/form/validate";
-import {toFormData} from "@/helpers/form/changeToFormData"
+import { toFormData } from "@/helpers/form/changeToFormData";
 
-const FormSignUp = ({setIsRegistered}) => {
+const FormSignUp = ({ setIsRegistered }) => {
   const [positions, setPositions] = useState([]);
 
-  const { register, watch, formState:{isValid, errors}, handleSubmit } = useForm({ mode: "onChange" });
+  const {
+    register,
+    watch,
+    formState: { isValid, errors },
+    handleSubmit
+  } = useForm({ mode: "onChange" });
 
-
-  const onSubmit = async(data) => {
-    
+  const onSubmit = async (data) => {
     /* const readyData = toFormData(data)
     console.log('readyData', readyData) */
-    const token = await getToken()
+    const token = await getToken();
 
-    
-    if(token)  {
-      setIsRegistered( await postUserData(data, token))
-    } 
-    
-     
- 
+    if (token) {
+      setIsRegistered(await postUserData(data, token));
+    }
   };
 
   useEffect(() => {
@@ -47,7 +46,7 @@ const FormSignUp = ({setIsRegistered}) => {
         className='flex flex-col'
         onSubmit={handleSubmit(onSubmit)}>
         <Input
-        watch={watch}
+          watch={watch}
           register={register}
           name='name'
           type='name'
@@ -56,8 +55,8 @@ const FormSignUp = ({setIsRegistered}) => {
         />
 
         <Input
-        watch={watch}
-        name='email'
+          watch={watch}
+          name='email'
           register={register}
           type='email'
           kind='Email'
@@ -65,7 +64,7 @@ const FormSignUp = ({setIsRegistered}) => {
         />
 
         <Input
-        watch={watch}
+          watch={watch}
           register={register}
           name='phone'
           type='phone'
@@ -74,16 +73,19 @@ const FormSignUp = ({setIsRegistered}) => {
         />
 
         <RadioSection
-        watch={watch}
-        name='position_id'
-        checkInput= {...register(
-          "position_id", userFormValidation.position_id
-        )}
-        error={errors.position_id?.message}
+          watch={watch}
+          register={register}
+          name='position_id'
+          error={errors.position_id?.message}
           positions={positions}
         />
 
-        <InputFile name='photo' watch={watch} register={register} error={errors.photo?.message}/>
+        <InputFile
+          name='photo'
+          watch={watch}
+          register={register}
+          error={errors.photo?.message}
+        />
 
         <Button
           spacing='self-center mt-8 mb-100'

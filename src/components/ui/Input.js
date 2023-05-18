@@ -1,4 +1,5 @@
 import { userFormValidation } from "@/helpers/form/validate";
+import classNames from "classnames";
 import React from "react";
 
 const inputTypes = {
@@ -7,10 +8,11 @@ const inputTypes = {
   error: "border-error border-2 focus:border-2 focus:border-error"
 };
 
-const labelTypes = {
-  style: "text-default text-xs absolute left-4 top-6 bg-background h-4 max-w-20 pl-1 pr-1",
-  error: "text-error"
-};
+const labelClass = classNames({
+  "label": true,
+  "label-default": "text-default text-xs absolute left-4 top-6 bg-background h-4 max-w-20 pl-1 pr-1",
+  "label-error": "text-error"
+});
 
 const helperTypes = {
   style: "text-xs pl-4 mr-0 mt-1 h-3.5 w-380 sm:w-328",
@@ -24,7 +26,7 @@ function Input({ watch, error, name, register, type, kind }) {
   return (
     <div className='self-center sm:w-328'>
       <div className='relative'>
-        {inputValue ? <label className={`${labelTypes.style} ${error ? labelTypes.error : labelTypes.default}`}>{kind}</label> : null}
+        {inputValue ? <label className={labelClass.label}>{kind}</label> : null}
         <input
           {...register(type, userFormValidation[type])}
           name={name}
@@ -43,5 +45,3 @@ function Input({ watch, error, name, register, type, kind }) {
 }
 
 export default Input;
-
-//library classnames

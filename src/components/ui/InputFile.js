@@ -1,5 +1,3 @@
-"use client";
-
 import { userFormValidation } from "@/helpers/form/validate";
 import React from "react";
 

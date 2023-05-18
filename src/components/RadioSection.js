@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const helperTypes = {
   default: "text-xs pl-4 mt-1 text-inputvalue h-3.5",
@@ -6,8 +6,7 @@ const helperTypes = {
 };
 import Radiobutton from "./ui/Radiobutton";
 
-const RadioSection = ({ watch, name, error, checkInput, positions }) => {
-  const [isChecked, setIsChecked] = useState();
+const RadioSection = ({ register, watch, name, error, positions }) => {
   const checkValue = watch(name);
   console.log("checkValue", checkValue);
   return (
@@ -16,8 +15,8 @@ const RadioSection = ({ watch, name, error, checkInput, positions }) => {
       {positions.map((position, index) => {
         return (
           <Radiobutton
+            register={register}
             name={name}
-            checkInput={checkInput}
             index={index}
             key={position.name}
             id={position.id}
