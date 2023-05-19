@@ -1,16 +1,12 @@
+import classNames from "classnames";
 import React from "react";
 
-const buttonTypes = {
-  default: "h-34 w-100 body-font font-nunito text-center text-body text-black/[.87] rounded-full bg-primary hover:bg-hover",
-  more: "h-34 w-120 body-font font-nunito text-center text-body text-black/[.87] rounded-full bg-primary hover:bg-hover",
-  disable: "h-34 w-100 body-font font-nunito text-center text-body text-white/[.87] rounded-full bg-disable opacity-"
-};
-
 const Button = ({ disable, spacing, variant, type, onClick, children }) => {
+  const buttonClass = classNames(`${spacing} font-sans h-34 body-font font-nunito text-center text-body rounded-full`, { "w-100  text-black/[.87]  bg-primary hover:bg-hover": variant === "default", "w-120  text-black/[.87]  bg-primary hover:bg-hover": variant === "more", "w-100  text-white/[.87]  bg-disable": disable });
   return (
     <button
       disable
-      className={`${buttonTypes[`${variant}`]} ${spacing}`}
+      className={buttonClass}
       type={type}
       onClick={onClick}>
       {children}

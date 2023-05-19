@@ -18,11 +18,11 @@ function Card({ photo, name, position, email, phone }) {
           alt='User photo'
         />
       </div>
-      <div className='m-5 text-body text-center truncate'>{name}</div>
-      <div className='m-5 text-body text-center '>
-        <div className='truncate'>{position}</div>
-        <div className='truncate'>{email}</div>
-        <div className='truncate'>{phone}</div>
+      <div className='m-5 text-body text-center truncate font-sans'>{name}</div>
+      <div className='m-5 text-body text-center font-sans'>
+        <div className='truncate font-sans'>{position}</div>
+        <div className='truncate font-sans'>{email}</div>
+        <div className='truncate font-sans'>{phone}</div>
       </div>
     </div>
   );

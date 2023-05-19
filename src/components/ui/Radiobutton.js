@@ -9,7 +9,7 @@ const Radiobutton = ({ register, name, children, checkValue, index }) => {
     <div className='flex items-center relative mt-7'>
       <input
         {...register("position_id", userFormValidation.position_id)}
-        className='opacity-0 z-1 h-5 w-5'
+        className='font-sans opacity-0 z-1 h-5 w-5'
         value={+index + 1}
         id={index}
         type='radio'
@@ -26,7 +26,7 @@ const Radiobutton = ({ register, name, children, checkValue, index }) => {
 
       <label
         htmlFor={index}
-        className='ml-3 text-body'>
+        className='font-sans ml-3 text-body'>
         {children}
       </label>
     </div>

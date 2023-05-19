@@ -1,33 +1,20 @@
 import { userFormValidation } from "@/helpers/form/validate";
+import classNames from "classnames";
 import React from "react";
-
-const textAreaTypes = {
-  default: "opacity-0 w-83 h-54 pl-4 text-base",
-  error: "opacity-0 w-83 h-54 pl-4 text-base"
-};
-
-const labelAreaTypes = {
-  default: "absolute border border-bordercolor border-l-0 rounded-r-md pl-4 h-54 w-297 sm:w-245 p-3",
-  error: "absolute border-2 border-error border-l-0 text-black/[0.87] rounded-r-md pl-4 h-54 w-72 p-3"
-};
-const buttonAreaTypes = {
-  default: "absolute w-83 h-54 hover:cursor-pointer border text-black/[0.87] border-black rounded-l-md",
-  error: "absolute w-83 h-54 hover:cursor-pointer border-2 text-black/[0.87] border-error rounded-l-md"
-};
-
-const helperTypes = {
-  default: "text-xs pl-4 mt-1 text-inputvalue h-3.5",
-  error: "text-xs pl-4 mt-1 text-error h-3.5"
-};
 
 const InputFile = ({ watch, name, register, error }) => {
   const inputValue = watch(name);
+  const photoFile = inputValue ? inputValue[0] : inputValue;
+  const labelClass = classNames("font-sans absolute border-l-0 rounded-r-md pl-4 h-54 w-297 sm:w-245 p-3", { "border border-default text-default": !photoFile && !error, "text-black text-opacity-87 border border-default": photoFile, "border-error text-black text-opacity-87 border-2": error });
+  const buttonClass = classNames("font-sans absolute w-83 h-54 hover:cursor-pointer text-black/[0.87] rounded-l-md", { "border border-black": !error, "border-2 border-error": error });
+  const helperClass = classNames("font-sans text-xs pl-4 mt-1 h-3.5 w-380 sm:w-328 ", { "text-default": !error, "text-error": error });
+
   return (
     <div className='self-center w-380 sm:w-328'>
       <div className='relative mt-8'>
         <button
           type='button'
-          className={error ? buttonAreaTypes.error : buttonAreaTypes.default}>
+          className={buttonClass}>
           Upload
         </button>
         <input
@@ -36,15 +23,15 @@ const InputFile = ({ watch, name, register, error }) => {
           type='file'
           id='photo'
           name={name}
-          className={error ? textAreaTypes.error : textAreaTypes.default}
+          className={"font-sans opacity-0 w-83 h-54 pl-4 text-base"}
         />
 
         <label
           htmlFor='photo'
-          className={`${error ? labelAreaTypes.error : labelAreaTypes.default} ${inputValue === undefined ? "text-inputvalue" : inputValue.length > 0 ? "text-black/[0.87]" : "text-inputvalue"}`}>
-          {inputValue === undefined ? "Upload your photo" : inputValue.length > 0 ? inputValue[0].name : "Upload your photo"}
+          className={labelClass}>
+          {photoFile ? photoFile.name : "Upload your photo"}
         </label>
-        <p className={helperTypes.error}>{error}</p>
+        <p className={helperClass}>{error}</p>
       </div>
     </div>
   );

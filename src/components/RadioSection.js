@@ -1,17 +1,14 @@
+import classNames from "classnames";
 import React from "react";
-
-const helperTypes = {
-  default: "text-xs pl-4 mt-1 text-inputvalue h-3.5",
-  error: "text-xs pl-4 mt-1 text-error h-3.5"
-};
 import Radiobutton from "./ui/Radiobutton";
 
 const RadioSection = ({ register, watch, name, error, positions }) => {
+  const helperClass = classNames(" font-sans text-xs pl-4 mt-1 h-3.5 w-380 sm:w-328", { "text-default": !error, "text-error": error });
   const checkValue = watch(name);
-  console.log("checkValue", checkValue);
+
   return (
     <div className='w-380 self-center sm:w-328'>
-      <p className='text-body mt-29 mb-11'>Select your position</p>
+      <p className='font-sans text-body mt-29 mb-11'>Select your position</p>
       {positions.map((position, index) => {
         return (
           <Radiobutton
@@ -25,7 +22,7 @@ const RadioSection = ({ register, watch, name, error, positions }) => {
           </Radiobutton>
         );
       })}
-      <p className={helperTypes[`${"error"}`]}>{error}</p>
+      <p className={helperClass}>{error}</p>
     </div>
   );
 };

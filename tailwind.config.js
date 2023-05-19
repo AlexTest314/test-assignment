@@ -66,6 +66,9 @@ module.exports = {
         default: "#7E7E7E",
         error: "#CB3D40"
       },
+      textOpacity: {
+        "text-opacity-87": "--tw-text-opacity: 0.87"
+      },
       borderRadius: {
         4: "2rem"
       }

@@ -1,14 +1,7 @@
 "use client";
 import Description from "@/components/Description";
 import FormSignUp from "@/components/FormSignUp";
-import Form from "@/components/FormSignUp";
 import Header from "@/components/Header";
-import Button from "@/components/ui/Button";
-import Card from "@/components/ui/Card";
-import Input from "@/components/ui/Input";
-import Preloader from "@/components/ui/Preloader";
-import Radiobutton from "@/components/ui/Radiobutton";
-import TextArea from "@/components/ui/InputFile";
 import Users from "@/components/Users";
 import { useState } from "react";
 import Registered from "@/components/Registered";

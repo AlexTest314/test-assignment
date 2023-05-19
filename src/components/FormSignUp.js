@@ -56,8 +56,8 @@ const FormSignUp = ({ setIsRegistered }) => {
 
         <Input
           watch={watch}
-          name='email'
           register={register}
+          name='email'
           type='email'
           kind='Email'
           error={errors.email?.message}

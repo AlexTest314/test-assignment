@@ -1,10 +1,9 @@
-const usersUrl = "https://frontend-test-assignment-api.abz.agency/api/v1/users?";
+const usersUrl = "https://frontend-test-assignment-api.abz.agency/api/v1/users";
 const positionUrl = "https://frontend-test-assignment-api.abz.agency/api/v1/positions";
 const tokenUrl = "https://frontend-test-assignment-api.abz.agency/api/v1/token";
-const userIdUrl = "https://frontend-test-assignment-api.abz.agency/api/v1/users/";
 
 export const getData = async (page, count) => {
-  const users = await fetch(`${usersUrl}page=${page}&count=${count}`)
+  return await fetch(`${usersUrl}?page=${page}&count=${count}`)
     .then(function (response) {
       return response.json();
     })
@@ -15,11 +14,10 @@ export const getData = async (page, count) => {
         // proccess server errors
       }
     });
-  return users;
 };
 
 export const getPositions = async () => {
-  const positions = await fetch(positionUrl)
+  return await fetch(positionUrl)
     .then(function (response) {
       return response.json();
     })
@@ -30,11 +28,10 @@ export const getPositions = async () => {
         // proccess server errors
       }
     });
-  return positions;
 };
 
 export const getToken = async () => {
-  const token = await fetch(tokenUrl)
+  return await fetch(tokenUrl)
     .then(function (response) {
       return response.json();
     })
@@ -45,21 +42,20 @@ export const getToken = async () => {
         // proccess server errors
       }
     });
-  return token;
 };
 
 export const postUserData = async (data, token) => {
-  const formDataPost = new FormData();
+  const formData = new FormData();
 
-  formDataPost.append("position_id", data.position_id);
-  formDataPost.append("name", data.name);
-  formDataPost.append("email", data.email);
-  formDataPost.append("phone", data.phone);
-  formDataPost.append("photo", data.photo[0]);
+  formData.append("position_id", data.position_id);
+  formData.append("name", data.name);
+  formData.append("email", data.email);
+  formData.append("phone", data.phone);
+  formData.append("photo", data.photo[0]);
 
-  const result = fetch("https://frontend-test-assignment-api.abz.agency/api/v1/users", {
+  return fetch(usersUrl, {
     method: "POST",
-    body: formDataPost,
+    body: formData,
     headers: {
       Token: token
       // get token with GET api/v1/token method
@@ -79,11 +75,10 @@ export const postUserData = async (data, token) => {
     .catch(function (error) {
       // proccess network errors
     });
-  return result;
 };
 
 export const getNewUser = async (id) => {
-  const users = await fetch(`${userIdUrl}${id}`)
+  return await fetch(`${usersUrl}/${id}`)
     .then(function (response) {
       return response.json();
     })
@@ -95,5 +90,4 @@ export const getNewUser = async (id) => {
         // proccess server errors
       }
     });
-  return users;
 };
