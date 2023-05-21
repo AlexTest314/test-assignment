@@ -7,10 +7,9 @@ import Input from "./ui/Input";
 import RadioSection from "./RadioSection";
 import InputFile from "./ui/InputFile";
 import { getPositions, getToken, postUserData } from "@/helpers/requests";
-import { userFormValidation } from "@/helpers/form/validate";
-import { toFormData } from "@/helpers/form/changeToFormData";
 
 const FormSignUp = ({ setIsRegistered }) => {
+  const [serverErrors, setServerErrors] = useState();
   const [positions, setPositions] = useState([]);
 
   const {
@@ -21,12 +20,24 @@ const FormSignUp = ({ setIsRegistered }) => {
   } = useForm({ mode: "onChange" });
 
   const onSubmit = async (data) => {
-    /* const readyData = toFormData(data)
-    console.log('readyData', readyData) */
+    setServerErrors(null);
+    const formData = new FormData();
+
+    formData.append("position_id", data.position_id);
+    formData.append("name", data.name);
+    formData.append("email", data.email);
+    formData.append("phone", data.phone);
+    formData.append("photo", data.photo[0]);
+
     const token = await getToken();
 
     if (token) {
-      setIsRegistered(await postUserData(data, token));
+      const postedUsers = await postUserData(data, token);
+      if (!postedUsers.success) {
+        setServerErrors(postedUsers.message);
+      } else {
+        setIsRegistered(postedUsers.success);
+      }
     }
   };
 
@@ -84,7 +95,7 @@ const FormSignUp = ({ setIsRegistered }) => {
           name='photo'
           watch={watch}
           register={register}
-          error={errors.photo?.message}
+          error={errors.photo?.message || serverErrors}
         />
 
         <Button

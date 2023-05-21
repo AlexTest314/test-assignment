@@ -15,27 +15,24 @@ function Users({ isRegistered }) {
     setIsUpdate(true);
     setPage((prev) => prev + 1);
     const data = await getData(page, 6);
-    const usersData = data.users;
     const newUsers = [...users];
-    newUsers.push(...usersData);
+    newUsers.push(...data.users);
     newUsers.sort((prev, cur) => cur.registration_timestamp - prev.registration_timestamp);
     setUsers(newUsers);
     setIsUpdate(false);
   };
 
   useEffect(() => {
-    const data = async () => {
+    const updateUsersData = async () => {
       const usersData = await getData(1, 6);
       setTotalPages(usersData.total_pages);
-      const users = usersData.users;
-      users.sort((prev, cur) => cur.registration_timestamp - prev.registration_timestamp);
+      const users = usersData.users.sort((prev, cur) => cur.registration_timestamp - prev.registration_timestamp);
       setUsers(users);
     };
 
-    data();
+    updateUsersData();
     if (isRegistered) {
       setPage(1);
-      data();
     }
     setPage((prev) => prev + 1);
     setIsUpdate(false);
@@ -62,7 +59,7 @@ function Users({ isRegistered }) {
           })}
         </div>
       )}
-      {page > totalPages ? null : (
+      {page < totalPages && (
         <Button
           spacing='mt-12 self-center'
           type='button'

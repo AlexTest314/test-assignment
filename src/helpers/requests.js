@@ -45,17 +45,9 @@ export const getToken = async () => {
 };
 
 export const postUserData = async (data, token) => {
-  const formData = new FormData();
-
-  formData.append("position_id", data.position_id);
-  formData.append("name", data.name);
-  formData.append("email", data.email);
-  formData.append("phone", data.phone);
-  formData.append("photo", data.photo[0]);
-
   return fetch(usersUrl, {
     method: "POST",
-    body: formData,
+    body: data,
     headers: {
       Token: token
       // get token with GET api/v1/token method
@@ -69,11 +61,11 @@ export const postUserData = async (data, token) => {
       if (data.success) {
         return data.success;
       } else {
-        // proccess server errors
+        return data;
       }
     })
     .catch(function (error) {
-      // proccess network errors
+      return error;
     });
 };
 

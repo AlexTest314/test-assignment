@@ -1,8 +1,13 @@
+import Tooltips from "./Tooltips";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import NoImage from "../../img/no-image.svg";
 
 function Card({ photo, name, position, email, phone }) {
+  const [isHover, setIsHover] = useState(false);
+
+  console.log(email.length);
+
   if (photo.includes("placeholder")) {
     photo = NoImage.src;
   }
@@ -18,11 +23,28 @@ function Card({ photo, name, position, email, phone }) {
           alt='User photo'
         />
       </div>
-      <div className='m-5 text-body text-center truncate font-sans'>{name}</div>
-      <div className='m-5 text-body text-center font-sans'>
+      <div className='m-5 text-body text-center  truncate font-sans'>
+        {name}
+        {isHover && name.length > 44 && <Tooltips>{name}</Tooltips>}
+      </div>
+      <div className='m-5 text-body text-center  font-sans'>
         <div className='truncate font-sans'>{position}</div>
-        <div className='truncate font-sans'>{email}</div>
-        <div className='truncate font-sans'>{phone}</div>
+        <div
+          className='truncate font-sans '
+          onMouseEnter={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setIsHover(true);
+          }}
+          onMouseLeave={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setIsHover(false);
+          }}>
+          {email}
+          {isHover && email.length > 44 && <Tooltips>{email}</Tooltips>}
+        </div>
+        <div className='truncate font-sans '>{phone}</div>
       </div>
     </div>
   );
